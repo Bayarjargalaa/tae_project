@@ -1,0 +1,91 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+  <link rel="stylesheet" href="{% static 'css/home.css' %}">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  <title>Төгс Амин Эрдэнэ ХХК</title>  
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <div class="logo">
+                    <!-- Link to Home Page -->
+                    <a href="#">
+                        <img width="50px" src="{% static 'data/other/logo.jpg' %}"
+                            alt="img1">
+                    </a>
+
+                    <!-- Link to Home Page -->
+                    <a class="home" href="#">
+                        <i>Төгс Амин Эрдэнэ ХХК</i>
+                    </a>
+                </div>
+                <div class="nav-links">
+                    <ul class="nav-group">
+                        <li class="nav-item">
+
+                            <!-- Link to Add Pet Page -->
+                            <a href="#">
+                                <i>Эхлэл</i>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+
+                            <!-- Link to Add Photo Page -->
+                            <a href="#">
+                                <i>Бидний тухай</i>
+                            </a>
+                        </li>
+
+                        {% comment %} {% if user.is_authenticated %} {% endcomment %}
+                            <li class="nav-item">
+
+                            <!-- Link to Profile Page -->
+                            <a href="#">
+                                <i>Хувийн мэдээлэл</i>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#">
+                                <i>Гарах</i>
+                            </a>
+                        </li>
+                        {% comment %} {% else %} {% endcomment %}
+                        
+                            <li class="nav-item">
+
+                                <!-- Link to Login Page -->
+                                <a href="#">
+                                    <i>Нэвтрэх</i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+
+                                <!-- Link to Register Page -->
+                                <a href="#">
+                                    <i>Бүртгүүлэх</i>
+                                </a>
+                            </li>
+                        {% comment %} {% endif %} {% endcomment %}
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}
+        {% endblock content %}
+    </main>
+    <div class="footer">
+        <span class="footer-section">
+            © 2025 ТӨГС АМИН ЭРДЭНЭ ХХК
+        </span>
+    </div>
+</body>
+</html>
