@@ -1,0 +1,53 @@
+<!-- filepath: d:\Bayar\programming\python\taeproject\templates\user_profile\register.html -->
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Бүртгүүлэх{% endblock title %}
+
+{% block content %}
+<div class="columns is-centered">
+  <div class="column is-12-mobile is-6-tablet is-4-desktop">
+    <form method="post" action="{% url 'register' %}">
+      {% csrf_token %}
+      <div class="field">
+        <p class="control has-icons-left">
+          <input class="input" type="text" name="username" placeholder="Хэрэглэгчийн нэр">
+          <span class="icon is-small is-left">
+            <i class="fas fa-user"></i>
+          </span>
+        </p>
+      </div>
+      <div class="field">
+        <p class="control has-icons-left">
+          <input class="input" type="email" name="email" placeholder="Имэйл">
+          <span class="icon is-small is-left">
+            <i class="fas fa-envelope"></i>
+          </span>
+        </p>
+      </div>
+      <div class="field">
+        <p class="control has-icons-left">
+          <input class="input" type="password" name="password1" placeholder="Нууц үг">
+          <span class="icon is-small is-left">
+            <i class="fas fa-lock"></i>
+          </span>
+        </p>
+      </div>
+      <div class="field">
+        <p class="control has-icons-left">
+          <input class="input" type="password" name="password2" placeholder="Нууц үг (давтах)">
+          <span class="icon is-small is-left">
+            <i class="fas fa-lock"></i>
+          </span>
+        </p>
+      </div>
+      <div class="field">
+        <p class="control">
+          <button class="button is-primary" type="submit">
+            Бүртгүүлэх
+          </button>
+        </p>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock content %}

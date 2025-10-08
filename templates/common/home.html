@@ -1,16 +1,66 @@
 {% extends "base.html" %}
 {% load static %}
-{%block title %}Home{% endblock title %}
+{% block title %}Барааны жагсаалт{% endblock title %}
 
 {% block content %}
-<ul>
-  {% for name in item_names %}
-    <li>
-        <img src="{{ name }}" alt="{{ name }}" width="100" height="100">
-        
-    </li>
+<section class="section">
+  <div class="container">
+    <h1 class="title has-text-centered">Барааны жагсаалт</h1>
 
-  {% endfor %}
-</ul>
+    <div class="columns is-multiline">
+      {% for item in items %}
+      <div class="column is-3-desktop is-6-tablet is-12-mobile">
+        <div class="card">          
+            <figure class="image is-128x128 is-inline-block">
+                <img src="{{ item.Зураг }}" alt="{{ item.name }}" style="object-fit: contain; width: 100%; height: 100%;" onclick="showModal('{{ item.Зураг }}')">
+            </figure>
 
+            <!-- Modal -->
+            <div id="imgModal" class="modal">
+            <div class="modal-background" onclick="closeModal()"></div>
+            <div class="modal-content has-text-centered">
+                <img id="modalImg" src="" style="max-width: 90%; max-height: 90%;">
+            </div>
+            <button class="modal-close is-large" aria-label="close" onclick="closeModal()"></button>
+            </div>
+
+            <script>
+            function showModal(src) {
+            document.getElementById('modalImg').src = src;
+            document.getElementById('imgModal').classList.add('is-active');
+            document.addEventListener('keydown', escCloseModal);
+            }
+            function closeModal() {
+            document.getElementById('imgModal').classList.remove('is-active');
+            document.removeEventListener('keydown', escCloseModal);
+            }
+            function escCloseModal(e) {
+            if (e.key === "Escape") {
+                closeModal();
+            }
+            }
+            </script>
+          <div class="card-content">
+          <p class="title is-6 has-text-centered mb-3 product-title" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="{{ item.name }}">
+              {{ item.name }}
+          </p>
+            
+            <p>Үйлдвэрлэсэн улс: <strong>{{ item.Үйлдвэрлэсэн_улс }}</strong></p>
+            <p style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="{{ item.Нийлүүлэгч }}">Нийлүүлэгч: <strong>{{ item.Нийлүүлэгч }}</strong></p>
+            <p>Хайрцаг дахь тоо: <strong>{{ item.Хайрцаг_дахь_тоо | floatformat:0 }}</strong></p>
+            <p>Хэмжээ: <strong>{{ item.Жин|floatformat:0 }}{{ item.unit }}</strong></p>
+            {% if user.is_authenticated %}
+              <p>Үнэ: <strong>{{ item.Үнэ }}</strong>₮</p>
+            {% endif %}
+          </div>
+
+        </div>
+      </div>
+      {% empty %}
+      <p class="has-text-centered">Бараа олдсонгүй.</p>
+      {% endfor %}
+    </div>
+
+  </div>
+</section>
 {% endblock content %}

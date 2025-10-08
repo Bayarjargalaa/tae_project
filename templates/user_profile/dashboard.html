@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Хэрэглэгчийн самбар{% endblock title %}
+{% block content %}
+<div class="columns">
+  <div class="column is-3">
+    <aside class="menu">
+      <p class="menu-label">Ерөнхий мэдээлэл</p>
+      <ul class="menu-list">
+        <li><a>
+            <span class="icon"><i class="fas fa-tachometer-alt"></i></span>
+            Dashboard
+        </a></li>
+        <ul class="menu-list">
+  <li>
+    <p class="menu-label">Тайлан</p>
+    <ul class="menu-list">
+            <li>
+                <a onclick="toggleMenu('inventory-submenu')">
+                <span class="icon is-small"><i class="fas fa-box"></i></span>
+                Бараа материал
+                <span class="icon is-small"><i class="fas fa-angle-down"></i></span>
+                </a>
+                <ul id="inventory-submenu" class="is-hidden">
+                <li><a><span class="icon is-small"><i class="fas fa-box"></i></span> Борлуулалт</a></li>
+                <li><a><span class="icon is-small"><i class="fas fa-truck"></i></span> Түгээлт</a></li>
+                <li><a><span class="icon is-small"><i class="fas fa-shopping-cart"></i></span> Захиалга</a></li>
+                </ul>
+            </li>
+            <li>
+                <a onclick="toggleMenu('hr-submenu')">
+                <span class="icon is-small"><i class="fas fa-users"></i></span>
+                Хүний нөөц
+                <span class="icon is-small"><i class="fas fa-angle-down"></i></span>
+                </a>
+                <ul id="hr-submenu" class="is-hidden">
+                <li><a><span class="icon is-small"><i class="fas fa-users"></i></span> Ажилтан</a></li>
+                <li><a><span class="icon is-small"><i class="fas fa-money-bill-wave"></i></span> Цалингийн мэдээлэл</a></li>
+                <li><a><span class="icon is-small"><i class="fas fa-file-invoice"></i></span> Тушаал</a></li>
+                </ul>
+            </li>
+            <li>
+                <a onclick="toggleMenu('vehicle-submenu')">
+                <span class="icon is-small"><i class="fa-solid fa-truck-monster"></i></span>
+                Тээврийн хэрэгсэл
+                <span class="icon is-small"><i class="fas fa-angle-down"></i></span>
+                </a>
+                <ul id="vehicle-submenu" class="is-hidden">
+                <li><a><span class="icon is-small"><i class="fa-solid fa-truck-monster"></i></span> Бүртгэл</a></li>
+                <li><a><span class="icon is-small"><i class="fa-solid fa-car-side"></i></span> Сэлбэг</a></li>
+                <li><a><span class="icon is-small"><i class="fa-solid fa-tools"></i></span> Засвар</a></li>
+                </ul>
+            </li>
+    </ul>
+<p class="menu-label">Бусад</p>
+<ul class="menu-list">
+  <li><a><span class="icon is-small"><i class="fa-solid fa-sack-dollar"></i></span> Бэлэн мөнгөний хүсэлт</a></li>
+  <li><a><span class="icon is-small"><i class="fa-solid fa-envelope"></i></span> Шаардах хуудас</a></li>
+  <li><a><span class="icon is-small"><i class="fa-solid fa-file-invoice"></i></span> Шинжилгээний бичиг</a></li>
+</ul>
+
+<script>
+function toggleMenu(id) {
+  var el = document.getElementById(id);
+  el.classList.toggle('is-hidden');
+}
+</script>
+    </aside>
+  </div>
+  <div class="column is-9">
+    <!-- Энд үндсэн контент гарна -->
+    <h2 class="title">Тавтай морилно уу, {{ request.user.username }}!</h2>
+  </div>
+</div>
+{% endblock content %}
